@@ -8,13 +8,15 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './main/home/home.component';
 import { RaizesComponent } from './main/raizes/raizes.component';
+import { FracaoComponent } from './components/fracao/fracao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    RaizesComponent
+    RaizesComponent,
+    FracaoComponent
   ],
   imports: [
     BrowserModule,

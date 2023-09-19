@@ -1,1 +1,45 @@
-<p>raizes works!</p>
+<div class="container">
+  <h1>
+    Raízes de funções reais
+  </h1>
+  <p>
+    Na “vida real”, digamos assim, há várias formas de encontrar uma raiz de uma função. Vamos supor que um gráfico R -> R dessa função seja dado para você. Nesse caso é fácil, é só seguir a função até encontrar o ponto em que ela cruza o eixo X. Porém, esse é o jeito infinitesimal de se achar a raíz de uma função. É como se você escolhesse um ponto arbitrário da função, e fosse olhando todos os infinitos pontos em uma direção até encontrar o ponto que passa pelo 0.
+  </p>
+  <p>
+    No entanto, o computador não consegue fazer isso, ele não pode olhar infinitos pontos, a memória dele é limitada e a representação de números dele também é. Além disso, nem sempre a função real será uma que possui fórmula fixa para encontrar as raízes, como Bhaskara.
+  </p>
+  <p>
+    Com isso em mente, vou mostrar aqui 4 métodos diferentes para que o computador possa chegar, ou pelo menos estimar, o valor das raízes de uma função real:
+  </p>
+  <h2>
+    Método da Bisseção
+  </h2>
+  <p>Seja f:[a,b]->R contínua e contendo uma e apenas uma raíz ξ em [a,b]. Queremos determinar ξ.</p>
+  <ol>
+    <li>
+        Escolher um intervalo [a,b] tais quais os sinais de a e b sejam diferente, isso garantirá que a raíz está nesse intervalo
+    </li>
+    <li>
+        Dividir o intervalo por 2 e conferir se os sinais das extremidades continuam diferentes, se continuarem, b = <fracao [dividendo]="'a+b'" [divisor]="'2'"></fracao>, se passarem a ter sinais iguais, a = <fracao [dividendo]="'a+b'" [divisor]="'2'"></fracao>.
+    </li>
+    <li>
+        dado um &epsilon; tal que 0 < &epsilon; << 1 ( &epsilon; muito próximo de 0), continuar a iteração 2 até que f(ξ) < &epsilon; ou |a-b| < &epsilon;.
+    </li>
+    <!-- <li>
+        <p><span style="font-size: larger;">a</span><sup>above</sup></p>
+        <p><span style="font-size: larger;">b</span><sub>below</sub></p>
+    </li> -->
+  </ol>
+  <p>
+    Dessa forma, ele retornará um número infinitesimalmente próximo da raíz, em outras palavras, a raíz.
+  </p>
+  <p>
+    O método da bisseção é um método lento, mas sempre encontrará a raiz.
+  </p>
+  <div class="video-container">
+      <video width="640" height="360" controls>
+        <source src="https://drive.google.com/uc?export=download&id=10sQ8Q5hb58mPQ9FjIrCLytzTcaEvSmAD" type='video/mp4'>
+            Your browser does not support the video tag.
+      </video>
+  </div>
+</div>
