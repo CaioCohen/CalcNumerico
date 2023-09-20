@@ -42,4 +42,36 @@
             Your browser does not support the video tag.
       </video>
   </div>
+  <br />
+  <h2>Método da Falsa Posição</h2>
+  <p>Esse método é similar ao método da bisseção. Seja f:[a,b]->R contínua e contendo uma e apenas uma raíz ξ em [a,b]. Queremos determinar ξ.</p>
+  <ol>
+    <li>
+      Escolher um intervalo [a,b] tais quais os sinais de a e b sejam diferente, isso garantirá que a raíz está nesse intervalo
+    </li>
+    <li>
+      Traçar uma secante entre a e b (segmento de reta com início em “a” e término em “b”)
+    </li>
+    <li>
+      Equação da reta secante será f(x)=f(a) + (x-a)  <fracao [dividendo]="'f(b)-f(a)'" [divisor]="'b-a'"></fracao>. Percebe-se que essa função está no formato Ax+b.
+    </li>
+    <li>
+      No eixo x, a reta passa pelo ponto (Xm,0). Xm = <fracao [dividendo]="'af(b)-bf(a)'" [divisor]="'f(b)-f(a)'"></fracao> 
+    </li>
+    <li>
+      Conferir se f(Xm) e a continua com sinais diferentes. Caso continuem, b = Xm, caso contrário, a=Xm.
+    </li>
+    <li>
+      dado um  tal que 0 < &epsilon; << 1 ( muito próximo de 0), continuar a iteração 5 até que f(ξ) < &epsilon; ou |a-b| < &epsilon;.
+    </li>
+  </ol>
+  <p>
+    Assim como o método da bisseção, esse também é um método lento, mas sempre chegará no resultado.
+  </p>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="https://drive.google.com/uc?export=download&id=1TzsonyZRb4TYvE6s8zcR1cfIjcD4eDLe" type='video/mp4'>
+          Your browser does not support the video tag.
+    </video>
+</div>
 </div>
