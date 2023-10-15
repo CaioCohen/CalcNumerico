@@ -116,6 +116,7 @@
   </div>
   <p>pode-se perceber que com as interações, o resultado converge para -1. Se escolhêssemos x<sub>0</sub>=-2(arbitrário) o resultado das iterações iria convergir para -5, logo, as raízes serão -1 e -5.</p>
   <br />
+
   <h2>Método de Newton-Raphson</h2>
   <p>O teorema do ponto fixo é tal que&phi; (x) = x-A(x)f(x), com A(ξ)&#8800;0, logo,</p>
   <div style="text-align: center;">
@@ -126,4 +127,34 @@
   <p>Teste de parada: |f(x<sub>k+1</sub>)< &epsilon;| ou  k > n, com n sendo um número máximo de iterações definido.</p>
   <p>Esse método funciona pegando a reta tangente do ponto f(x<sub>0</sub>), x<sub>1</sub> será o ponto em que essa rota corta o eixo x, depois traçar a reta tangente de f(x<sub>1</sub>) e x<sub>2</sub> será o ponto em que essa rota corta o eixo x e assim por diante.</p>
   <p>Esse método não funcionará caso, em alguma das iterações, x<sub>n</sub> não fizer parte do domínio da função.</p>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source
+        src="https://drive.google.com/uc?export=download&id=1A2Tb1u_1Cjti7JlxmbFRki-Ffugy2-EO"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <h2>Método da Secante</h2>
+  <p>Esse método é similar com o método da falsa posição. O que esses dois métodos têm em comum é que eles se utilizam de retas secantes para encontrar a raíz.</p>
+  <p>Dados x<sub>0</sub> e x<sub>1</sub> iniciais:</p>
+  <div style="text-align: center;">
+    <img src="../../../assets/imgs/equacoes/Secante.png">
+  </div>
+  <p>A condição de parada será:</p>
+  <div style="text-align: center;">
+    <img src="../../../assets/imgs/equacoes/Secante2.png">
+  </div>
+  <p>Esse método funciona traçando retas secantes entre os pontos  x<sub>0</sub> e  x<sub>1</sub> e  x<sub>2</sub> será o ponto em que essa reta corta o eixo x, com isso, ele traça uma nova reta secante entre  x<sub>1</sub> e  x<sub>2</sub> e  x<sub>3</sub> será onde a reta corta o eixo x e assim vai até chegar na condição de parada.</p>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source
+        src="https://drive.google.com/uc?export=download&id=1wHqw7FXDHr69mXkGzl74ZXkoJs_bcbQ_"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+  </div>
 </div>
