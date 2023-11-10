@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './main/home/home.component';
 import { RaizesComponent } from './main/raizes/raizes.component';
 import { FracaoComponent } from './components/fracao/fracao.component';
+import { TaylorComponent } from './main/taylor/taylor.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FracaoComponent } from './components/fracao/fracao.component';
     NavbarComponent,
     HomeComponent,
     RaizesComponent,
-    FracaoComponent
+    FracaoComponent,
+    TaylorComponent
   ],
   imports: [
     BrowserModule,
