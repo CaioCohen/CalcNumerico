@@ -10,6 +10,7 @@ import { HomeComponent } from './main/home/home.component';
 import { RaizesComponent } from './main/raizes/raizes.component';
 import { FracaoComponent } from './components/fracao/fracao.component';
 import { TaylorComponent } from './main/taylor/taylor.component';
+import { ValorInicialComponent } from './main/valor-inicial/valor-inicial.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TaylorComponent } from './main/taylor/taylor.component';
     HomeComponent,
     RaizesComponent,
     FracaoComponent,
-    TaylorComponent
+    TaylorComponent,
+    ValorInicialComponent
   ],
   imports: [
     BrowserModule,
