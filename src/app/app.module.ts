@@ -11,6 +11,7 @@ import { RaizesComponent } from './main/raizes/raizes.component';
 import { FracaoComponent } from './components/fracao/fracao.component';
 import { TaylorComponent } from './main/taylor/taylor.component';
 import { ValorInicialComponent } from './main/valor-inicial/valor-inicial.component';
+import { GraficoComponent } from './components/grafico/grafico.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +21,15 @@ import { ValorInicialComponent } from './main/valor-inicial/valor-inicial.compon
     RaizesComponent,
     FracaoComponent,
     TaylorComponent,
-    ValorInicialComponent
+    ValorInicialComponent,
+    GraficoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TooltipModule.forRoot()
   ],
-  providers: [],
+  providers: [  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
