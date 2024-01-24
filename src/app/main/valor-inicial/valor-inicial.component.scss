@@ -1,25 +1,36 @@
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
 
-ol{
-    li{
-        margin-top: 20px;
-    }
+ol {
+  li {
+    margin-top: 20px;
+  }
 }
 
-.video-container{
-    text-align: center;
+.video-container {
+  text-align: center;
 }
 
-.grafico-container{
-    text-align: center;
+.grafico-container {
+  text-align: center;
 }
 
-.input-container{
-    text-align: center;
-    width: 100%;
-    input{
-        width: 50%;
-    }
+.input-container {
+  text-align: center;
+  width: 100%;
+  input {
+    width: 50%;
+  }
+}
+
+.only-mobile {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  // Styles for desktops
+  .only-mobile {
+    display: none;
+  }
 }

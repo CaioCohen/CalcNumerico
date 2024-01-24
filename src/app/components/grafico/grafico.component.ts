@@ -10,8 +10,11 @@ export class GraficoComponent implements OnInit {
 
   canvas: any;
   contexto: any;
-  @Input() x: number[] = [];
-  @Input() y: number[] = [];
+  @Input() x1: number[] = [];
+  @Input() y1: number[] = [];
+
+  @Input() x2: number[] = [];
+  @Input() y2: number[] = [];
   configuracoes = {
     "padding": 30
   }
@@ -20,8 +23,8 @@ export class GraficoComponent implements OnInit {
   // canvas de 640 x 360
   ngOnInit(): void {
     // configurando padding
-    let labelsX = this.getLabelPositions(this.x)
-    let labelsY = this.getLabelPositions(this.y)
+    let labelsX = this.getLabelPositions(this.x1)
+    let labelsY = this.getLabelPositions(this.y1)
     let tamanhos = labelsY.map(y =>{
       return y.toString().length;
     })
@@ -34,20 +37,20 @@ export class GraficoComponent implements OnInit {
     this.contexto.lineWidth = 1;
     this.contexto.beginPath(); // Reset path for the axes
     //eixo x
-    this.contexto.moveTo(this.LGX(this.x[0]), this.LGY(0));
-    this.contexto.lineTo(this.LGX(this.x[this.x.length-1]), this.LGY(0))
+    this.contexto.moveTo(this.LGX(this.x1[0]), this.LGY(0));
+    this.contexto.lineTo(this.LGX(this.x1[this.x1.length-1]), this.LGY(0))
     this.contexto.stroke();
     this.contexto.font = "15px Arial";
     for(let i = 0; i < 5; i++){
       this.contexto.fillText(labelsX[i], this.LGX(labelsX[i]), this.LGY(labelsY[0])+20);
     }
     // eixo y
-    this.contexto.moveTo(this.LGX(this.x[0]), this.LGY(labelsY[0]));
-    this.contexto.lineTo(this.LGX(this.x[0]), this.LGY(labelsY[labelsY.length-1]))
+    this.contexto.moveTo(this.LGX(this.x1[0]), this.LGY(labelsY[0]));
+    this.contexto.lineTo(this.LGX(this.x1[0]), this.LGY(labelsY[labelsY.length-1]))
     this.contexto.stroke();
     this.contexto.font = "15px Arial";
     for(let i = 0; i < 5; i++){
-      this.contexto.fillText(labelsY[i], this.LGX(this.x[0])-10*(labelsY[i].toString().length), this.LGY(labelsY[i]));
+      this.contexto.fillText(labelsY[i], this.LGX(this.x1[0])-10*(labelsY[i].toString().length), this.LGY(labelsY[i]));
     }
 
     this.contexto.stroke();
@@ -55,26 +58,39 @@ export class GraficoComponent implements OnInit {
     this.contexto.strokeStyle = "blue";
     this.contexto.lineWidth = 2;
     this.contexto.beginPath(); // Reset path for the axes
-    this.contexto.moveTo(this.LGX(this.x[0]), this.LGY(this.y[0]));
-    for(let i = 1; i < this.x.length; i++){
-      let x = this.LGX(this.x[i])
-      let y = this.LGY(this.y[i]);
+    this.contexto.moveTo(this.LGX(this.x1[0]), this.LGY(this.y1[0]));
+    for(let i = 1; i < this.x1.length; i++){
+      let x = this.LGX(this.x1[i])
+      let y = this.LGY(this.y1[i]);
+      this.contexto.lineTo(x,y);
+      this.contexto.stroke();
+    }
+    if(this.x2.length>0 && this.y2.length>0)
+    this.contexto.stroke();
+    //Constroi o grafico
+    this.contexto.strokeStyle = "orange";
+    this.contexto.lineWidth = 2;
+    this.contexto.beginPath(); // Reset path for the axes
+    this.contexto.moveTo(this.LGX(this.x2[0]), this.LGY(this.y2[0]));
+    for(let i = 1; i < this.x2.length; i++){
+      let x = this.LGX(this.x2[i])
+      let y = this.LGY(this.y2[i]);
       this.contexto.lineTo(x,y);
       this.contexto.stroke();
     }
   }
 
   LGX(pos: number) {
-    let first = this.x[0];
-    let last = this.x[this.x.length - 1];
+    let first = this.x1[0];
+    let last = this.x1[this.x1.length - 1];
     let espaco = last-first;
     let passo = (640-(2*(this.configuracoes.padding)))/espaco;
     return (passo*(pos-first))+this.configuracoes.padding;
   }
 
   LGY(pos: number) {
-    let first = Math.min(...this.y);
-    let last = Math.max(...this.y);
+    let first = Math.min(...this.y1);
+    let last = Math.max(...this.y1);
     if(first == last){
       first = first-first;
       last = last + last;

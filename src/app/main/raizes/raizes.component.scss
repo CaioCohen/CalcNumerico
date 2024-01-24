@@ -11,3 +11,13 @@ ol{
 .video-container{
     text-align: center;
 }
+.only-mobile {
+    display: block;
+  }
+  
+  @media (min-width: 768px) {
+    // Styles for desktops
+    .only-mobile {
+      display: none;
+    }
+  }

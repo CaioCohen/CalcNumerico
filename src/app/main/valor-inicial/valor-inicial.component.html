@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="alert alert-danger only-mobile" role="alert">
+        Esse site não foi feito para ser usado por este dispositivo, algumas funcionalidades podem ser comprometidas
+    </div>
   <h1>Método de Euler</h1>
   <p>
     O método de Euler foi desenvolvido para se encontrar o valor aproximado de
@@ -29,20 +32,6 @@
       />
       Your browser does not support the video tag.
     </video>
-  </div>
-  <p>
-    Segue abaixo uma emulação do método de Euler para encontrar a solução aproximada da função: f(x)=(x-3)<sup>2</sup>
-  </p>
-
-  <div class="grafico-container" *ngIf="!calculando1">
-    <app-grafico [x]="x1" [y]="y1"></app-grafico>
-  </div>
-  <div class="grafico-container" *ngIf="calculando1">
-    <app-grafico></app-grafico>
-  </div>
-  <div class="input-container">
-    <input type="range" id="rangeInput" [(ngModel)]="n1" min="3" max="100" (change)="recalcularEuler1()"/>
-    <p>{{ n1 }}</p>
   </div>
 
   <h1>Método de Euler Melhorado</h1>
@@ -96,5 +85,23 @@
   <p>Outros métodos de Runge-Kutta:</p>
   <div style="text-align: center">
     <img src="../../../assets/imgs/equacoes/Euler3.png" />
+  </div>
+
+  <h1>Simuladores</h1>
+  <p>
+    Segue abaixo simulações utilizando os métodos de Euler, método de Euler Melhorado e o Método de Runge Kutta de quarta ordem.
+  </p>
+  <p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=2(x-3), com x(0)=9. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
+  <p>Em azul está a solução aproximada, em em laranja está a solução analítica.</p>
+  <h2 style="text-align: center;">Método de Euler</h2>
+  <div class="grafico-container" *ngIf="!calculando1">
+    <app-grafico [x1]="x1" [y1]="y1" [x2]="x2" [y2]="y2"></app-grafico>
+  </div>
+  <div class="grafico-container" *ngIf="calculando1">
+    <app-grafico></app-grafico>
+  </div>
+  <div class="input-container">
+    <input type="range" id="rangeInput" [(ngModel)]="n1" min="3" max="100" (change)="recalcularEuler1()"/>
+    <p>{{ n1 }}</p>
   </div>
 </div>

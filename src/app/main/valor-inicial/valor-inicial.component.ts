@@ -9,16 +9,30 @@ export class ValorInicialComponent implements OnInit {
   n1: number = 10;
   x1:number[] = [0]
   y1:number[] = [9]
+  x2:number[] = []
+  y2:number[] = []
   calculando1:boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
     this.recalcularEuler1();
+    this.analitico1();
   }
 
   flinha1(x:number){
     return 2*(x-3)
+  }
+  f(x:number){
+    return (x-3)**2
+  }
+
+  analitico1(){
+    let h = 8/1000
+    for(let i = 0; i < 1000;i++){
+      this.x2.push(i*h);
+      this.y2.push(this.f(this.x2[i]))
+    }
   }
 
   recalcularEuler1(){
