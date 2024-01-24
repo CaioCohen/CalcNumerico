@@ -34,8 +34,8 @@ export class GraficoComponent implements OnInit {
     this.contexto.lineWidth = 1;
     this.contexto.beginPath(); // Reset path for the axes
     //eixo x
-    this.contexto.moveTo(this.LGX(this.x[0]), this.LGY(labelsY[0]));
-    this.contexto.lineTo(this.LGX(this.x[this.x.length-1]), this.LGY(labelsY[0]))
+    this.contexto.moveTo(this.LGX(this.x[0]), this.LGY(0));
+    this.contexto.lineTo(this.LGX(this.x[this.x.length-1]), this.LGY(0))
     this.contexto.stroke();
     this.contexto.font = "15px Arial";
     for(let i = 0; i < 5; i++){
@@ -86,15 +86,15 @@ export class GraficoComponent implements OnInit {
 
   getLabelPositions(array: number[]){
     let retorno = [0,0,0,0,0]
-    retorno[0] = Math.min(...array)
-    retorno[4] = Math.max(...array)
+    retorno[0] = +Math.min(...array).toFixed(2)
+    retorno[4] = +Math.max(...array).toFixed(2)
     if(retorno[0]==retorno[4]){
       retorno[0] -= retorno[0]
       retorno[4] += retorno[4]
     }
-    retorno[2] =(retorno[0]+retorno[4])/2
-    retorno[1] = (retorno[0]+retorno[2])/2
-    retorno[3] = (retorno[2]+retorno[4])/2
+    retorno[2] =+((retorno[0]+retorno[4])/2).toFixed(2)
+    retorno[1] = +((retorno[0]+retorno[2])/2).toFixed(2)
+    retorno[3] = +((retorno[2]+retorno[4])/2).toFixed(2)
     return retorno;
   }
 

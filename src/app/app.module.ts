@@ -12,6 +12,7 @@ import { FracaoComponent } from './components/fracao/fracao.component';
 import { TaylorComponent } from './main/taylor/taylor.component';
 import { ValorInicialComponent } from './main/valor-inicial/valor-inicial.component';
 import { GraficoComponent } from './components/grafico/grafico.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { GraficoComponent } from './components/grafico/grafico.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     TooltipModule.forRoot()
   ],
   providers: [  ],
