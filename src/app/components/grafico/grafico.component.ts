@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -6,7 +6,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
   templateUrl: './grafico.component.html',
   styleUrls: ['./grafico.component.scss']
 })
-export class GraficoComponent implements OnInit {
+export class GraficoComponent implements AfterViewInit  {
 
   canvas: any;
   contexto: any;
@@ -15,13 +15,16 @@ export class GraficoComponent implements OnInit {
 
   @Input() x2: number[] = [];
   @Input() y2: number[] = [];
+  @Input() canvasId: string = 'espaco'; // Default id is 'espaco'
+
+
   configuracoes = {
     "padding": 30
   }
   constructor() {
   }
   // canvas de 640 x 360
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     // configurando padding
     let labelsX = this.getLabelPositions(this.x1)
     let labelsY = this.getLabelPositions(this.y1)
@@ -30,8 +33,8 @@ export class GraficoComponent implements OnInit {
     })
     let max = Math.max(...tamanhos);
     this.configuracoes.padding = Math.max(10*max)
-    this.canvas = document.getElementById("espaco");
-    this.contexto = this.canvas.getContext("2d");
+    this.canvas = document.getElementById(this.canvasId);
+    this.contexto = this.canvas.getContext('2d');
     //Constroi os eixos
     this.contexto.strokeStyle = "black";
     this.contexto.lineWidth = 1;

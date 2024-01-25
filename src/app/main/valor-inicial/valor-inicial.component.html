@@ -42,7 +42,7 @@
       >i</sub
     >
     e x<sub>i+1</sub> e coloca seu valor em x<sub>i</sub>, agora,
-    f(x<sub>i+1</sub>) estará na reta da sibbestris, não mais na tangente.
+    f(x<sub>i+1</sub>) estará na reta da bissetriz, não mais na tangente.
   </p>
   <p>
     Vamos considerar f(x<sub>i</sub>) como y<sub>i</sub> e g(x,y) a reta que
@@ -92,10 +92,11 @@
     Segue abaixo simulações utilizando os métodos de Euler, método de Euler Melhorado e o Método de Runge Kutta de quarta ordem.
   </p>
   <p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=2(x-3), com x(0)=9. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
-  <p>Em azul está a solução aproximada, em em laranja está a solução analítica.</p>
+  <p>Em azul está a solução aproximada, em laranja está a solução analítica.</p>
+
   <h2 style="text-align: center;">Método de Euler</h2>
   <div class="grafico-container" *ngIf="!calculando1">
-    <app-grafico [x1]="x1" [y1]="y1" [x2]="x2" [y2]="y2"></app-grafico>
+    <app-grafico [x1]="x1" [y1]="y1" [x2]="xA" [y2]="yA" [canvasId]="'espaco1'"></app-grafico>
   </div>
   <div class="grafico-container" *ngIf="calculando1">
     <app-grafico></app-grafico>
@@ -103,5 +104,17 @@
   <div class="input-container">
     <input type="range" id="rangeInput" [(ngModel)]="n1" min="3" max="100" (change)="recalcularEuler1()"/>
     <p>{{ n1 }}</p>
+  </div>
+
+  <h2 style="text-align: center;">Método de Euler Melhorado</h2>
+  <div class="grafico-container" *ngIf="!calculando2">
+    <app-grafico [x1]="x2" [y1]="y2" [x2]="xA" [y2]="yA" [canvasId]="'espaco2'"></app-grafico>
+  </div>
+  <div class="grafico-container" *ngIf="calculando2">
+    <app-grafico></app-grafico>
+  </div>
+  <div class="input-container">
+    <input type="range" id="rangeInput" [(ngModel)]="n2" min="3" max="20" (change)="calcularEulerMelhorado()"/>
+    <p>{{ n2 }}</p>
   </div>
 </div>
