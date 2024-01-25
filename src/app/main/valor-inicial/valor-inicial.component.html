@@ -91,7 +91,7 @@
   <p>
     Segue abaixo simulações utilizando os métodos de Euler, método de Euler Melhorado e o Método de Runge Kutta de quarta ordem.
   </p>
-  <p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=2(x-3), com x(0)=9. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
+  <p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=4(x-3)<sup>3</sup>/10, com x(0)=8. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
   <p>Em azul está a solução aproximada, em laranja está a solução analítica.</p>
 
   <h2 style="text-align: center;">Método de Euler</h2>
@@ -116,5 +116,17 @@
   <div class="input-container">
     <input type="range" id="rangeInput" [(ngModel)]="n2" min="3" max="20" (change)="calcularEulerMelhorado()"/>
     <p>{{ n2 }}</p>
+  </div>
+
+  <h2 style="text-align: center;">Método de Runge-Kutta de 4° Ordem</h2>
+  <div class="grafico-container" *ngIf="!calculando3">
+    <app-grafico [x1]="x3" [y1]="y3" [x2]="xA" [y2]="yA" [canvasId]="'espaco3'"></app-grafico>
+  </div>
+  <div class="grafico-container" *ngIf="calculando3">
+    <app-grafico></app-grafico>
+  </div>
+  <div class="input-container">
+    <input type="range" id="rangeInput" [(ngModel)]="n3" min="3" max="20" (change)="calcularRungeKutta()"/>
+    <p>{{ n3 }}</p>
   </div>
 </div>
