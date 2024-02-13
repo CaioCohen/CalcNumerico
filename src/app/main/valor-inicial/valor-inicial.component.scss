@@ -28,6 +28,14 @@ ol {
   display: block;
 }
 
+.exemplos{
+  text-align: center;
+}
+
+.active-button{
+  background-color: #01337e;
+}
+
 @media (min-width: 768px) {
   // Styles for desktops
   .only-mobile {
