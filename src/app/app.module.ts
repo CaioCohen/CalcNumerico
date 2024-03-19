@@ -13,6 +13,7 @@ import { TaylorComponent } from './main/taylor/taylor.component';
 import { ValorInicialComponent } from './main/valor-inicial/valor-inicial.component';
 import { GraficoComponent } from './components/grafico/grafico.component';
 import { FormsModule } from '@angular/forms';
+import { SisLinComponent } from './main/sis-lin/sis-lin.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     FracaoComponent,
     TaylorComponent,
     ValorInicialComponent,
-    GraficoComponent
+    GraficoComponent,
+    SisLinComponent
   ],
   imports: [
     BrowserModule,

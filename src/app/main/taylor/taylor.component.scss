@@ -1,24 +1,25 @@
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
 
-ol{
-    li{
-        margin-top: 20px;
-    }
+ol {
+  li {
+    margin-top: 20px;
+  }
 }
 
-.video-container{
-    text-align: center;
+.video-container {
+  text-align: center;
 }
 
 .only-mobile {
-    display: block;
+  display: block;
+}
+
+@media (min-width: 768px) {
+
+  // Styles for desktops
+  .only-mobile {
+    display: none;
   }
-  
-  @media (min-width: 768px) {
-    // Styles for desktops
-    .only-mobile {
-      display: none;
-    }
-  }
+}
