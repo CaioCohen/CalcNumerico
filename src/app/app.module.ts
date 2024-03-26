@@ -15,6 +15,8 @@ import { GraficoComponent } from './components/grafico/grafico.component';
 import { FormsModule } from '@angular/forms';
 import { SisLinComponent } from './main/sis-lin/sis-lin.component';
 
+import { EditorModule } from '@tinymce/tinymce-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { SisLinComponent } from './main/sis-lin/sis-lin.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    EditorModule,
     TooltipModule.forRoot()
   ],
   providers: [  ],

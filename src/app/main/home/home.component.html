@@ -40,7 +40,12 @@
                 <img class="topico" src="../../../assets/imgs/ValorContorno.png">
                 <p class="nome-topico">Problema de valor de contorno</p>
             </a>
-        </div>                
+        </div>  
+        <div class="col-lg-12">
+            <editor [(ngModel)]="editor" apiKey="5je6mfsb7k1wynfa4n1cea1yu2mk9gk58zbpmkgtmnz2tvir"
+                    [init]="tinyConfig"></editor>
+          </div>    
+          <button (click)="teste()">click</button>          
     </div>
 
 </div>
