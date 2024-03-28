@@ -16,6 +16,10 @@ import { FormsModule } from '@angular/forms';
 import { SisLinComponent } from './main/sis-lin/sis-lin.component';
 
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { InterpolacaoComponent } from './main/interpolacao/interpolacao.component';
+import { AjustesCurvasComponent } from './main/ajustes-curvas/ajustes-curvas.component';
+import { IntegracaoComponent } from './main/integracao/integracao.component';
+import { ValorContornoComponent } from './valor-contorno/valor-contorno.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     TaylorComponent,
     ValorInicialComponent,
     GraficoComponent,
-    SisLinComponent
+    SisLinComponent,
+    InterpolacaoComponent,
+    AjustesCurvasComponent,
+    IntegracaoComponent,
+    ValorContornoComponent
   ],
   imports: [
     BrowserModule,
