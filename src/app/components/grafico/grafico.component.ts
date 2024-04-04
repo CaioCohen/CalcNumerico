@@ -10,6 +10,8 @@ export class GraficoComponent implements AfterViewInit  {
 
   canvas: any;
   contexto: any;
+  @Input() ponto1: number[] = [];
+  @Input() ponto2: number[] = [];
   @Input() x1: number[] = [];
   @Input() y1: number[] = [];
 
@@ -81,6 +83,22 @@ export class GraficoComponent implements AfterViewInit  {
       this.contexto.lineTo(x,y);
       this.contexto.stroke();
     }
+    //Desenha os pontos
+    if(this.ponto1.length > 0){
+      this.contexto.fillStyle = "red";
+      this.contexto.beginPath(); // Reset path for the axes
+      //this.contexto.moveTo(this.LGX(this.ponto1[0]), this.LGY(this.ponto1[1]));
+      this.contexto.arc(this.LGX(this.ponto1[0]), this.LGY(this.ponto1[1]),6,0,2*Math.PI);
+      this.contexto.fill();
+    }
+    if(this.ponto2.length > 0){
+      this.contexto.fillStyle = "red";
+      this.contexto.beginPath(); // Reset path for the axes
+      //this.contexto.moveTo(this.LGX(this.ponto1[0]), this.LGY(this.ponto1[1]));
+      this.contexto.arc(this.LGX(this.ponto2[0]), this.LGY(this.ponto2[1]),6,0,2*Math.PI);
+      this.contexto.fill();
+    }
+    
   }
 
   LGX(pos: number) {

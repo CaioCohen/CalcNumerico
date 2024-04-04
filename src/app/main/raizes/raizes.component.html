@@ -217,4 +217,25 @@
       Your browser does not support the video tag.
     </video>
   </div>
+  <h2>Simuladores</h2>
+  <div class="row">
+    <div class="col-md-3">
+      <button class="btn" [ngClass]="{ 'btn-primary': simuladorEscolhido == 1, 'btn-secondary': simuladorEscolhido != 1 }" (click)="escolher(1)">Bisseção</button>
+    </div>
+    <div class="col-md-3">
+      <button class="btn" [ngClass]="{ 'btn-primary': simuladorEscolhido == 2, 'btn-secondary': simuladorEscolhido != 2 }" (click)="escolher(2)">Falsa Posição</button>
+    </div>
+    <div class="col-md-3">
+      <button class="btn" [ngClass]="{ 'btn-primary': simuladorEscolhido == 3, 'btn-secondary': simuladorEscolhido != 3 }" (click)="escolher(3)">Newton-Raphson</button>
+    </div>
+    <div class="col-md-3">
+      <button class="btn" [ngClass]="{ 'btn-primary': simuladorEscolhido == 4, 'btn-secondary': simuladorEscolhido != 4 }" (click)="escolher(4)">Secante</button>
+    </div>    
+  </div>
+  <br/>
+  <div class="grafico-container" *ngIf="simuladorEscolhido != 0">
+    <app-grafico [x1]="listaX" [y1]="listaY" [x2]="listaX2" [y2]="listaY2" [ponto1]="ponto1" [ponto2]="ponto2" [canvasId]="'espaco1'"></app-grafico>
+    <br />
+    <button class="btn btn-primary" (click)="proximoPasso()">Próximo passo</button>
+  </div>
 </div>
