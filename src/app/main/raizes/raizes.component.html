@@ -218,7 +218,24 @@
     </video>
   </div>
   <h2>Simuladores</h2>
+  <form (submit)="salvar()">
+    <label>F(x)=</label>
+    <input type="text" [(ngModel)]="funcaoUsuario" name="functionInput" required [ngModelOptions]="{standalone: true}">
+    <br>
+    <label>Ponto 1:</label>
+    <input class="input-ponto" type="number" [(ngModel)]="a1Usuario" required [ngModelOptions]="{standalone: true}">
+    <span>,</span>
+    <input class="input-ponto" type="number" [(ngModel)]="a2Usuario" required [ngModelOptions]="{standalone: true}">
+    <br>
+    <label>Ponto 2:</label>
+    <input class="input-ponto" type="number" [(ngModel)]="b1Usuario" required [ngModelOptions]="{standalone: true}">
+    <span>,</span>
+    <input class="input-ponto" type="number" [(ngModel)]="b2Usuario" required [ngModelOptions]="{standalone: true}">
+    <br>
+    <button class="btn btn-primary" style="margin: 10px;" type="submit">Salvar/Resetar</button>
+  </form>
   
+  <p *ngIf="result !== null">Result of f(2) is: {{ result }}</p>
   <div class="row">
     <div class="col-md-3">
       <button class="btn" [ngClass]="{ 'btn-primary': simuladorEscolhido == 1, 'btn-secondary': simuladorEscolhido != 1 }" (click)="escolher(1)">Bisseção</button>
