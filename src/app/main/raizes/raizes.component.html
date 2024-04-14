@@ -144,7 +144,7 @@
 
   <h2>Método de Newton-Raphson</h2>
   <p>
-    O teorema do ponto fixo é tal que&phi; (x) = x-A(x)f(x), com A(ξ)&#8800;0,
+    O teorema do ponto fixo é tal que &phi; (x) = x-A(x)f(x), com A(ξ)&#8800;0,
     logo,
   </p>
   <div style="text-align: center">
@@ -152,7 +152,7 @@
   </div>
   <p>
     Assumindo que A(x) =
-    <fracao [dividendo]="'1'" [divisor]="'f`(x)'"></fracao>, logo, (x) = x -
+    <fracao [dividendo]="'1'" [divisor]="'f`(x)'"></fracao>, logo, &phi;(x) = x -
     <fracao [dividendo]="'f(x)'" [divisor]="'f`(x)'"></fracao> é a função de
     iteração do MNR.
   </p>
@@ -218,6 +218,7 @@
     </video>
   </div>
   <h2>Simuladores</h2>
+  
   <div class="row">
     <div class="col-md-3">
       <button class="btn" [ngClass]="{ 'btn-primary': simuladorEscolhido == 1, 'btn-secondary': simuladorEscolhido != 1 }" (click)="escolher(1)">Bisseção</button>

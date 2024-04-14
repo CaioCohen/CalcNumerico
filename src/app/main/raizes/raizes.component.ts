@@ -16,6 +16,7 @@ export class RaizesComponent implements OnInit {
   ponto2: number[] = [4,64]
   inicio = -8;
   fim = 8;
+  contadorSecante = 0;
 
   constructor() { }
 
@@ -28,7 +29,14 @@ export class RaizesComponent implements OnInit {
     if(n == 2){
       this.plotarRetaFalsaPosicao();
       this.recarregarGrafico();
-    }else{
+    }else if (n == 3){
+      this.ponto2  = [];
+    }else if (n == 4){
+      this.contadorSecante = 0;
+      this.plotarRetaSecante();
+      this.recarregarGrafico();
+    }
+    else{
       this.listaX2 = [];
       this.listaY2 = [];
       this.recarregarGrafico();
@@ -37,6 +45,10 @@ export class RaizesComponent implements OnInit {
 
   funcao(x: number){
     return x**3
+  }
+
+  derivada(f: (x: number) => number, x: number, h: number = 0.001): number {
+    return (f(x + h) - f(x)) / h;
   }
 
   recuperarCoordenadas(){
@@ -81,10 +93,46 @@ export class RaizesComponent implements OnInit {
 
   }
 
+  metodoNewthon(){
+    let xn = this.ponto1[0];
+    
+    xn = xn - (this.funcao(xn)/this.derivada(this.funcao,xn));
+
+    this.ponto1 = [xn,this.funcao(xn)];
+    this.recarregarGrafico();
+
+  }
+
+  metodoSecante(){
+
+    let x0 = ((this.ponto1[0]*this.ponto2[1]) - (this.ponto2[0]*this.ponto1[1]))/(this.ponto2[1] - this.ponto1[1])
+    if(this.contadorSecante % 2 == 0){
+      this.ponto1 = [x0,this.funcao(x0)]
+    }else{
+      this.ponto2 = [x0,this.funcao(x0)]
+    }
+    this.contadorSecante++;
+    this.plotarRetaSecante();
+    this.recarregarGrafico();
+
+  }
+
   plotarRetaFalsaPosicao(){
     this.listaX2 = [];
     this.listaY2 = [];
     let h = (this.ponto2[0] - this.ponto1[0])/1000;
+      for(let i = 0; i < 1000; i++){
+        let x = this.ponto1[0] + i*h;
+        this.listaX2.push(x);
+        let y = this.ponto1[1] + (x-this.ponto1[0])*((this.ponto2[1]-this.ponto1[1])/(this.ponto2[0]-this.ponto1[0]))
+        this.listaY2.push(y)        
+      }
+  }
+
+  plotarRetaSecante(){
+    this.listaX2 = [];
+    this.listaY2 = [];
+    let h = (this.fim - this.inicio)/1000;
       for(let i = 0; i < 1000; i++){
         let x = this.ponto1[0] + i*h;
         this.listaX2.push(x);
@@ -100,6 +148,12 @@ export class RaizesComponent implements OnInit {
         break;
       case(2):
         this.metodoFalsaPosicao();
+        break;
+      case(3):
+        this.metodoNewthon();
+        break;
+      case(4):
+        this.metodoSecante();
         break;
       default:
         //do nothing
