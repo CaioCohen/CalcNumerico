@@ -16,6 +16,15 @@ ol{
   text-align: center;
 }
 
+.btn-container{
+  position: absolute;
+  margin-top: -23rem;
+  button{
+    width: 2rem;
+    margin: 5px;
+  }
+}
+
 .input-ponto{
   width: 4rem;
   margin: 0 5px;

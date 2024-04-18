@@ -25,10 +25,12 @@ export class RaizesComponent implements OnInit {
   funcaoUsuario: string = 'x^2';
   result: number | null = null;
   expr: any;
+  listaPassos: string[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.salvar();
   }
 
   escolher(n: number) {
@@ -84,6 +86,7 @@ export class RaizesComponent implements OnInit {
     } else {
       this.ponto2 = [(this.ponto1[0] + this.ponto2[0]) / 2, medio];
     }
+    this.listaPassos.push(`Ponto 1:(${this.ponto1[0].toFixed(2)},${this.ponto1[1].toFixed(2)}). Ponto 2: (${this.ponto2[0].toFixed(2)},${this.ponto2[1].toFixed(2)})` )
     this.recarregarGrafico();
   }
 
@@ -100,6 +103,7 @@ export class RaizesComponent implements OnInit {
     } else {
       this.ponto2 = [x0, this.funcao(x0)];
     }
+    this.listaPassos.push(`Ponto 1:(${this.ponto1[0].toFixed(2)},${this.ponto1[1].toFixed(2)}). Ponto 2: (${this.ponto2[0].toFixed(2)},${this.ponto2[1].toFixed(2)})` )
     this.plotarRetaFalsaPosicao();
     this.recarregarGrafico();
 
@@ -111,6 +115,7 @@ export class RaizesComponent implements OnInit {
     xn = xn - (this.funcao(xn) / this.derivada(this.expr, xn));
 
     this.ponto1 = [xn, this.funcao(xn)];
+    this.listaPassos.push(`Ponto 1:(${this.ponto1[0].toFixed(2)},${this.ponto1[1].toFixed(2)}).` )
     this.recarregarGrafico();
 
   }
@@ -124,6 +129,7 @@ export class RaizesComponent implements OnInit {
       this.ponto2 = [x0, this.funcao(x0)]
     }
     this.contadorSecante++;
+    this.listaPassos.push(`Ponto 1:(${this.ponto1[0].toFixed(2)},${this.ponto1[1].toFixed(2)}). Ponto 2: (${this.ponto2[0].toFixed(2)},${this.ponto2[1].toFixed(2)})` )
     this.plotarRetaSecante();
     this.recarregarGrafico();
 
@@ -185,15 +191,31 @@ export class RaizesComponent implements OnInit {
 
   salvar(): void {
     try {
+      this.listaPassos = [];
+      this.listaX2 = [];
+      this.listaY2 = [];
       this.expr = parse(this.funcaoUsuario).compile();
-      this.ponto1 = [this.a1Usuario, this.a2Usuario];
-      this.ponto2 = [this.b1Usuario, this.b2Usuario];
+      this.ponto1 = [this.a1Usuario, this.funcao(this.a1Usuario)];
+      this.ponto2 = [this.b1Usuario, this.funcao(this.b1Usuario)];
       this.recuperarCoordenadas();
       this.simuladorEscolhido = 0;
+
     } catch (error) {
       console.error('Error parsing expression:', error);
       alert('Invalid mathematical expression');
     }
+  }
+
+  mudarEscala(positivo:number){
+    if(positivo){
+      this.inicio = this.inicio/2
+      this.fim = this.fim/2
+    }else{
+      this.inicio = this.inicio*2
+      this.fim = this.fim*2
+    }
+    this.recuperarCoordenadas();
+    this.recarregarGrafico();
   }
 
 }

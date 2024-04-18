@@ -93,7 +93,7 @@
 </p>
 <p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=4(x-3)<sup>3</sup>/10, com x(0)=8. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
 <p>Em azul está a solução aproximada, em laranja está a solução analítica.</p>
-<div class="row">
+<!-- <div class="row">
   <div class="col-sm-6 exemplos">
     <button class="btn btn-primary" [ngClass]="{ 'active-button': selectedOption === 1 }" (click)="selecionarExemplo(1)"> Exemplo 1 </button>
 
@@ -101,9 +101,16 @@
   <div class="col-sm-6 exemplos">
     <button class="btn btn-primary" [ngClass]="{ 'active-button': selectedOption === 2 }" (click)="selecionarExemplo(2)"> Exemplo 2 </button>
   </div>
-</div>
+</div> -->
 
-<ng-container *ngIf="selectedOption != 0">
+<form (submit)="salvar()">
+  <label>F(x)=</label>
+  <input type="text" [(ngModel)]="funcaoUsuario" name="functionInput" required [ngModelOptions]="{standalone: true}">
+  <br>
+  <button class="btn btn-primary" style="margin: 10px;" type="submit">Salvar/Resetar</button>
+</form>
+
+<ng-container *ngIf="!calculando">
   <h2 style="text-align: center;">Método de Euler</h2>
   <div class="grafico-container" *ngIf="!calculando1">
     <app-grafico [x1]="x1" [y1]="y1" [x2]="xA" [y2]="yA" [canvasId]="'espaco1'"></app-grafico>

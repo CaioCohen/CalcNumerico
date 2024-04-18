@@ -223,14 +223,10 @@
     <input type="text" [(ngModel)]="funcaoUsuario" name="functionInput" required [ngModelOptions]="{standalone: true}">
     <br>
     <label>Ponto 1:</label>
-    <input class="input-ponto" type="number" [(ngModel)]="a1Usuario" required [ngModelOptions]="{standalone: true}">
-    <span>,</span>
-    <input class="input-ponto" type="number" [(ngModel)]="a2Usuario" required [ngModelOptions]="{standalone: true}">
+    <input class="input-ponto" type="number" [(ngModel)]="a1Usuario" required [ngModelOptions]="{standalone: true}">   
     <br>
     <label>Ponto 2:</label>
-    <input class="input-ponto" type="number" [(ngModel)]="b1Usuario" required [ngModelOptions]="{standalone: true}">
-    <span>,</span>
-    <input class="input-ponto" type="number" [(ngModel)]="b2Usuario" required [ngModelOptions]="{standalone: true}">
+    <input class="input-ponto" type="number" [(ngModel)]="b1Usuario" required [ngModelOptions]="{standalone: true}">    
     <br>
     <button class="btn btn-primary" style="margin: 10px;" type="submit">Salvar/Resetar</button>
   </form>
@@ -251,9 +247,22 @@
     </div>    
   </div>
   <br/>
-  <div class="grafico-container" *ngIf="simuladorEscolhido != 0">
-    <app-grafico [x1]="listaX" [y1]="listaY" [x2]="listaX2" [y2]="listaY2" [ponto1]="ponto1" [ponto2]="ponto2" [canvasId]="'espaco1'"></app-grafico>
-    <br />
-    <button class="btn btn-primary" (click)="proximoPasso()">Próximo passo</button>
+  <div class="row">
+    <div class="col-md-10" style="min-height: 400px;">
+      <div class="grafico-container" *ngIf="simuladorEscolhido != 0">
+        <app-grafico [x1]="listaX" [y1]="listaY" [x2]="listaX2" [y2]="listaY2" [ponto1]="ponto1" [ponto2]="ponto2" [canvasId]="'espaco1'"></app-grafico>        
+        <div class="btn-container">
+          <button class="btn btn-primary" (click)="mudarEscala(1)">+</button><br>
+          <button class="btn btn-primary" (click)="mudarEscala(0)">-</button>
+        </div>
+        <br />
+        <button class="btn btn-primary" (click)="proximoPasso()">Próximo passo</button>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <p *ngFor="let item of listaPassos">{{item}}</p>
+    </div>
   </div>
+  
 </div>
