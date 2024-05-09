@@ -22,7 +22,7 @@ export class RaizesComponent implements OnInit {
   a2Usuario: number = 0;
   b1Usuario: number = 0;
   b2Usuario: number = 0;
-  funcaoUsuario: string = 'x^2';
+  funcaoUsuario: string = 'x^3-30';
   result: number | null = null;
   expr: any;
   listaPassos: string[] = [];
@@ -52,7 +52,6 @@ export class RaizesComponent implements OnInit {
       else {
         this.recarregarGrafico();
       }
-
   }
 
   funcao(x: number) {
