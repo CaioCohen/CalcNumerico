@@ -9,14 +9,7 @@ export class AjustesCurvasComponent implements OnInit {
   a1: number = 0;
   a2: number = 0;
   grau: number = 1;
-  // pontos: number[][] = [
-  //   [0, 1],    // y = 2*0^2 + 3*0 + 1 = 1
-  //   [1, 6],    // y = 2*1^2 + 3*1 + 1 = 6
-  //   [2, 15],   // y = 2*2^2 + 3*2 + 1 = 15
-  //   [3, 28],   // y = 2*3^2 + 3*3 + 1 = 28
-  //   [4, 45],   // y = 2*4^2 + 3*4 + 1 = 45
-  //   [5, 66]    // y = 2*5^2 + 3*5 + 1 = 66
-  // ];
+  // pontos: number[][] = [[2013, 3569], [2014, 4437], [2015, 3830], [2016, 4055], [2017, 3773], [2018, 3721], [2019, 4355], [2020, 3368], [2021, 3380], [2022, 3480], [2023, 3861]];
 
   pontos: number[][] = [
     [1, 2],
@@ -179,12 +172,13 @@ export class AjustesCurvasComponent implements OnInit {
   }
 
   mudarEscala(positivo: number) {
+    let diferenca = Math.abs( this.fim - this.inicio)
     if (positivo) {
-      this.inicio = this.inicio / 2
-      this.fim = this.fim / 2
+      this.inicio += diferenca/4
+      this.fim -= diferenca/4
     } else {
-      this.inicio = this.inicio * 2
-      this.fim = this.fim * 2
+      this.inicio -= diferenca/4
+      this.fim += diferenca/4
     }
     this.plotar();
   }
