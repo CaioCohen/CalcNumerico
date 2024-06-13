@@ -11,6 +11,7 @@ export class InterpolacaoComponent implements OnInit {
   a1: number = 0;
   a2: number = 0;
   formaInterpolacao: number = 1;
+  valorDesejado:number = 0;
 
   pontos: number[][] = [
     [1, 2],
@@ -28,6 +29,9 @@ export class InterpolacaoComponent implements OnInit {
   fim = 8.5;
   calculado: boolean = false;
   ngOnInit(): void {
+    if("pontosI" in sessionStorage){
+      this.pontos = JSON.parse(sessionStorage.getItem("pontosI") ?? "");
+    }
   }
 
   adicionarPonto() {
@@ -35,6 +39,8 @@ export class InterpolacaoComponent implements OnInit {
     this.pontos.push(ponto);
     this.a1 = 0;
     this.a2 = 0;
+    sessionStorage.setItem('pontosI',JSON.stringify(this.pontos))
+
   }
 
   plotar() {
@@ -106,6 +112,7 @@ export class InterpolacaoComponent implements OnInit {
 
   excluirPonto(i:any){
     this.pontos.splice(i,1);
+    sessionStorage.setItem('pontosI',JSON.stringify(this.pontos))
   }
 
   mudarEscala(positivo: number) {

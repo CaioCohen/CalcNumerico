@@ -49,7 +49,8 @@
     <label>Grau:</label>
     <input class="input-ponto" type="number" [(ngModel)]="grau">
     <button class="btn btn-primary" style="margin: 10px;" (click)="plotar()">Plotar Gráfico</button>
-
+    <span>para x = </span><input class="input-ponto" type="number" [(ngModel)]="valorDesejado"> f(x)= 
+    <span>{{leastSquares(pontos,grau,valorDesejado).toFixed(2)}}</span>
     <div class="row" *ngIf="calculado">
         <div class="col-md-10" style="min-height: 400px;">
           <div class="grafico-container">

@@ -25,12 +25,15 @@ export class AjustesCurvasComponent implements OnInit {
   listaY: number[] = [];
   inicio = 0;
   fim = 10;
+  valorDesejado: number = 0
   calculado: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
-    const x = 2.5;
-    console.log(this.leastSquares(this.pontos, this.grau, x));
+    if("pontosAC" in sessionStorage){
+      this.pontos = JSON.parse(sessionStorage.getItem("pontosAC") ?? "");
+    }
+
   }
 
   adicionarPonto() {
@@ -38,6 +41,7 @@ export class AjustesCurvasComponent implements OnInit {
     this.pontos.push(ponto);
     this.a1 = 0;
     this.a2 = 0;
+    sessionStorage.setItem('pontosAC',JSON.stringify(this.pontos))
   }
 
   plotar() {
@@ -61,6 +65,7 @@ export class AjustesCurvasComponent implements OnInit {
 
   excluirPonto(i:any){
     this.pontos.splice(i,1);
+    sessionStorage.setItem('pontosAC',JSON.stringify(this.pontos))
   }
 
   leastSquares(points: any, degree: any, x: any) {
