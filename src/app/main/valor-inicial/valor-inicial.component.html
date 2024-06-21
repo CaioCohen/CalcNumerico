@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-top: 100px;">
   <div class="alert alert-danger only-mobile" role="alert">
       Esse site não foi feito para ser usado por este dispositivo, algumas funcionalidades podem ser comprometidas
   </div>
@@ -91,7 +91,7 @@
 <p>
   Segue abaixo simulações utilizando os métodos de Euler, método de Euler Melhorado e o Método de Runge Kutta de quarta ordem.
 </p>
-<p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=4(x-3)<sup>3</sup>/10, com x(0)=8. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
+<p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=3(x-4)<sup>2</sup>, com x<sub>0</sub>=-64. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
 <p>Em azul está a solução aproximada, em laranja está a solução analítica.</p>
 <!-- <div class="row">
   <div class="col-sm-6 exemplos">
@@ -103,12 +103,7 @@
   </div>
 </div> -->
 
-<form (submit)="salvar()">
-  <label>F(x)=</label>
-  <input type="text" [(ngModel)]="funcaoUsuario" name="functionInput" required [ngModelOptions]="{standalone: true}">
-  <br>
-  <button class="btn btn-primary" style="margin: 10px;" type="submit">Salvar/Resetar</button>
-</form>
+
 
 <ng-container *ngIf="!calculando">
   <h2 style="text-align: center;">Método de Euler</h2>
@@ -146,5 +141,50 @@
     <input type="range" id="rangeInput" [(ngModel)]="n3" min="3" max="20" (change)="calcularRungeKutta()"/>
     <p>{{ n3 }}</p>
   </div>
+
+  <h2>Teste você mesmo</h2>
+  <p>Abaixo você pode testar a sua própria EDO. Insira o valor da derivada conhecida, e os valores iniciais para X e Y.</p>
+  <ul>
+    <li style="color: blue;">
+      Método de Euler
+    </li>
+    <li style="color: orange;">
+      Método de Euler Melhorado
+    </li>
+    <li style="color: darkgreen;">
+      Método de Runge-Kutta de 4° Ordem
+    </li>
+  </ul>
+  <form (submit)="salvar()">
+    <div class="form-group">
+        <label for="functionInput">F'(x)=</label>
+        <input type="text" [(ngModel)]="funcaoUsuario" name="functionInput" required [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+        <label for="x0">x<sub>0</sub>=</label>
+        <input class="input-ponto" type="number" [(ngModel)]="x0s" required [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+        <label for="y0">y<sub>0</sub>=</label>
+        <input class="input-ponto" type="text" [(ngModel)]="y0s" name="functionInput" required [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+        <label for="numeroPassos">Número de passos</label>
+        <input class="input-ponto" type="number" id="numeroPassos" [(ngModel)]="nS" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+        <label for="tamanhoPasso">Tamanho do passo</label>
+        <input class="input-ponto" type="number" id="tamanhoPasso" [(ngModel)]="hS" [ngModelOptions]="{standalone: true}">
+    </div>
+    <button class="btn btn-primary" type="submit">Salvar/Resetar</button>
+</form>
+
+  <div class="grafico-container" *ngIf="!calculandoS">
+    <app-grafico [x1]="x1s" [y1]="y1s" [x2]="x2s" [y2]="y2s" [x3]="x3s" [y3]="y3s" [canvasId]="'espaco4'"></app-grafico>
+  </div>
+  <div class="grafico-container" *ngIf="calculandoS">
+    <app-grafico></app-grafico>
+  </div>
+
 </ng-container>
 </div>

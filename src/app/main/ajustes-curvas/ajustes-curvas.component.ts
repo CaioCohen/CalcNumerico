@@ -48,7 +48,7 @@ export class AjustesCurvasComponent implements OnInit {
     this.listaX = [];
     this.listaY = [];
     let h = (this.fim - this.inicio) / 100;
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i <= 100; i++) {
       this.listaX.push(this.inicio + i * h);
       this.listaY.push(this.leastSquares(this.pontos, this.grau, this.listaX[i]))
     }

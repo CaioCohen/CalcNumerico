@@ -47,7 +47,7 @@ export class InterpolacaoComponent implements OnInit {
     this.listaX = [];
     this.listaY = [];
     let h = (this.fim - this.inicio) / 1000;
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i <= 1000; i++) {
       this.listaX.push(this.inicio + i * h);
 
       this.listaY.push(this.formaInterpolacao == 1 ? this.interpolateLagrange(this.pontos, this.listaX[i]) : this.interpolateNewton(this.pontos, this.listaX[i]))
