@@ -163,7 +163,7 @@ export class ValorInicialComponent implements OnInit {
       this.recarregarGraficos();
     } catch (error) {
       console.error('Error parsing expression:', error);
-      alert('Invalid mathematical expression');
+      alert('Expressão matemática inválida');
     }
   }
 

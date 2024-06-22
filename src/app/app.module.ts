@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +18,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { InterpolacaoComponent } from './main/interpolacao/interpolacao.component';
 import { AjustesCurvasComponent } from './main/ajustes-curvas/ajustes-curvas.component';
 import { IntegracaoComponent } from './main/integracao/integracao.component';
-import { ValorContornoComponent } from './valor-contorno/valor-contorno.component';
+import { ValorContornoComponent } from './main/valor-contorno/valor-contorno.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
