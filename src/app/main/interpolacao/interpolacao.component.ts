@@ -10,8 +10,9 @@ export class InterpolacaoComponent implements OnInit {
   constructor() { }
   a1: number = 0;
   a2: number = 0;
-  formaInterpolacao: number = 1;
+  formaInterpolacao: number = 2;
   valorDesejado:number = 0;
+  polinomioInterpolado: string = "";
 
   pontos: number[][] = [
     [1, 2],
@@ -77,12 +78,16 @@ export class InterpolacaoComponent implements OnInit {
     const dividedDifferences = this.computeDividedDifferences(points);
     let result = dividedDifferences[0][0];
     let term = 1;
+    let polynomial = `${dividedDifferences[0][0]}`;
 
     for (let i = 1; i < n; i++) {
       term *= (x - points[i - 1][0]);
       result += dividedDifferences[0][i] * term;
+      // Build the polynomial string
+      let termStr = this.formatTerm(dividedDifferences[0][i], points, i);
+      polynomial += ` ${termStr}`;
     }
-
+    this.polinomioInterpolado = polynomial
     return result;
   }
 
@@ -101,6 +106,20 @@ export class InterpolacaoComponent implements OnInit {
     }
 
     return dividedDifferences;
+  }
+
+  private formatTerm(coefficient: number, points: number[][], index: number): string {
+    let term = '';
+    if (coefficient >= 0) {
+        term += '+';
+    }
+    term += `${coefficient}`;
+    
+    for (let i = 0; i < index; i++) {
+        term += `(x - ${points[i][0]})`;
+    }
+
+    return term;
   }
 
   recarregarGrafico() {

@@ -111,18 +111,11 @@ export class IntegracaoComponent implements OnInit {
       const x0 = this.a + i * h;
       const x1 = x0 + h;
       const x2 = x0 + 2 * h;
-
-      const y0 = this.funcao(x0);
-      const y1 = this.funcao(x1);
-      const y2 = this.funcao(x2);
-
-      const aCoeff = (y0 - 2 * y1 + y2) / (2 * h * h);
-      const bCoeff = (y2 - y0) / (2 * h);
-      const cCoeff = y0;
-
+      let espaco = x2-x0;
+      let points = [[x0,this.funcao(x0)],[x1,this.funcao(x1)],[x2,this.funcao(x2)]]
       for (let j = 0; j <= 100; j++) { 
-        const xVal = x0 + j * (2 * h / 100);
-        const yVal = aCoeff * (xVal - x0) * (xVal - x0) + bCoeff * (xVal - x0) + cCoeff;
+        const xVal = x0 + j * (espaco/100);
+        const yVal = this.interpolateLagrange(points,xVal)
         x.push(xVal);
         y.push(yVal);
       }
@@ -130,6 +123,23 @@ export class IntegracaoComponent implements OnInit {
 
     this.x1 = x;
     this.y1 = y;
+  }
+
+  interpolateLagrange(points: number[][], x: number): number {
+    const n = points.length;
+    let result = 0;
+
+    for (let i = 0; i < n; i++) {
+      let term = points[i][1];
+      for (let j = 0; j < n; j++) {
+        if (j !== i) {
+          term *= (x - points[j][0]) / (points[i][0] - points[j][0]);
+        }
+      }
+      result += term;
+    }
+
+    return result;
   }
 
 }

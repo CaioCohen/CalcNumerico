@@ -50,6 +50,7 @@
     <button class="btn btn-primary" style="margin: 10px;" (click)="plotar()">Plotar Gráfico</button>
     <span>para x = </span><input class="input-ponto" type="number" [(ngModel)]="valorDesejado"> f(x)= 
     <span>{{interpolateLagrange(pontos,valorDesejado).toFixed(2)}}</span>
+    <p>Polinômio resultante: f(x) = {{polinomioInterpolado}}</p>
     
     <div class="row" *ngIf="calculado">
         <div class="col-md-10" style="min-height: 400px;">

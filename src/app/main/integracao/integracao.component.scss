@@ -45,7 +45,8 @@ label {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+select {
   width: calc(100% - 20px);
   padding: 8px;
   margin-bottom: 10px;
