@@ -213,20 +213,63 @@
       Your browser does not support the video tag.
     </video>
   </div> -->
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/raizes_pages-to-jpg-0001.jpg">
+  </div>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="../../../assets/videos/bissecao.mp4"
+              type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/raizes_pages-to-jpg-0002.jpg">
+  </div>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="../../../assets/videos/FalsaPosicao.mp4"
+              type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/raizes_pages-to-jpg-0003.jpg">
+  </div>
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/raizes_pages-to-jpg-0004.jpg">
+  </div>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="../../../assets/videos/MNR.mp4"
+              type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/raizes_pages-to-jpg-0005.jpg">
+  </div>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="../../../assets/videos/Secante.mp4"
+              type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>  
   <h2>Simuladores</h2>
   <form (submit)="salvar()">
     <label>F(x)=</label>
     <input type="text" [(ngModel)]="funcaoUsuario" name="functionInput" required [ngModelOptions]="{standalone: true}">
     <br>
     <label>Ponto 1:</label>
-    <input class="input-ponto" type="number" [(ngModel)]="a1Usuario" required [ngModelOptions]="{standalone: true}">   
+    <input class="input-ponto" type="number" [(ngModel)]="a1Usuario" required [ngModelOptions]="{standalone: true}">
     <br>
     <label>Ponto 2:</label>
-    <input class="input-ponto" type="number" [(ngModel)]="b1Usuario" required [ngModelOptions]="{standalone: true}">    
+    <input class="input-ponto" type="number" [(ngModel)]="b1Usuario" required [ngModelOptions]="{standalone: true}">
     <br>
     <button class="btn btn-primary" style="margin: 10px;" type="submit">Salvar/Resetar</button>
   </form>
-  
+
   <p *ngIf="result !== null">Result of f(2) is: {{ result }}</p>
   <div class="row">
     <div class="col-md-3">
@@ -240,13 +283,13 @@
     </div>
     <div class="col-md-3">
       <button class="btn" [ngClass]="{ 'btn-primary': simuladorEscolhido == 4, 'btn-secondary': simuladorEscolhido != 4 }" (click)="escolher(4)">Secante</button>
-    </div>    
+    </div>
   </div>
-  <br/>
+  <br />
   <div class="row">
     <div class="col-md-10" style="min-height: 400px;">
       <div class="grafico-container" *ngIf="simuladorEscolhido != 0">
-        <app-grafico [x1]="listaX" [y1]="listaY" [x2]="listaX2" [y2]="listaY2" [ponto1]="ponto1" [ponto2]="ponto2" [canvasId]="'espaco1'"></app-grafico>        
+        <app-grafico [x1]="listaX" [y1]="listaY" [x2]="listaX2" [y2]="listaY2" [ponto1]="ponto1" [ponto2]="ponto2" [canvasId]="'espaco1'"></app-grafico>
         <div class="btn-container">
           <button class="btn btn-primary" (click)="mudarEscala(1)">+</button><br>
           <button class="btn btn-primary" (click)="mudarEscala(0)">-</button>
@@ -260,5 +303,5 @@
       <p *ngFor="let item of listaPassos">{{item}}</p>
     </div>
   </div>
-  
+
 </div>

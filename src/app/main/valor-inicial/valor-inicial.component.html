@@ -1,190 +1,210 @@
 <div class="container" style="padding-top: 100px;">
   <div class="alert alert-danger only-mobile" role="alert">
-      Esse site não foi feito para ser usado por este dispositivo, algumas funcionalidades podem ser comprometidas
+    Esse site não foi feito para ser usado por este dispositivo, algumas funcionalidades podem ser comprometidas
   </div>
-<h1>Método de Euler</h1>
-<p>
-  O método de Euler foi desenvolvido para se encontrar o valor aproximado de
-  uma função usando as derivadas a partir de um valor inicial.
-</p>
-<p>
-  O método consiste em, uma vez que se sabe a taxa de crescimento de uma
-  função e um ponto de início, ir “caminhando” pela função utilizando um passo
-  fixo. Quanto menor o passo, mais preciso será a estimativa.
-</p>
-<p>
-  Por exemplo, dado a derivada de f(x) e os valores de x<sub>0</sub> e
-  f(x<sub>0</sub>), para estimar o valor de f(x) para um x qualquer.
-  Considerando d como |x - x<sub>0</sub>|, h =
-  <fracao [dividendo]="'d'" [divisor]="'n'"></fracao> em que n é o número de
-  passos que o método dará até chegar ao resultado. Quanto maior o número de
-  passos, mais preciso é a aproximação.
-</p>
-<p>Com isso:</p>
-<div style="text-align: center">
-  <img src="../../../assets/imgs/equacoes/Euler1.png" />
-</div>
-<div class="video-container">
-  <video width="640" height="360" controls>
-    <source
-      src="../../../assets/videos/Euler.mp4"
-      type="video/mp4"
-    />
-    Your browser does not support the video tag.
-  </video>
-</div>
-
-<h1>Método de Euler Melhorado</h1>
-<p>
-  O método de Euler Melhorado segue o mesmo princípio do anterior, mas em vez
-  de estimar o valor de uma função seguindo a derivada, ele parametriza a reta
-  que passa pela bissetriz do ângulo formado entre a reta tangente de x<sub
-    >i</sub
-  >
-  e x<sub>i+1</sub> e coloca seu valor em x<sub>i</sub>, agora,
-  f(x<sub>i+1</sub>) estará na reta da bissetriz, não mais na tangente.
-</p>
-<p>
-  Vamos considerar f(x<sub>i</sub>) como y<sub>i</sub> e g(x,y) a reta que
-  passa por (x,y). O M.E.M é dado por:
-</p>
-<div style="text-align: center">
-  <img src="../../../assets/imgs/equacoes/Euler2.png" />
-</div>
-<div class="video-container">
-  <video width="640" height="360" controls>
-    <source
-      src="../../../assets/videos/EulerMelhorado.mp4"
-      type="video/mp4"
-    />
-    Your browser does not support the video tag.
-  </video>
-</div>
-<h1>Métodos de Runge-Kutta</h1>
-<p>
-  Os métodos de Runge Kutta são métodos que seguem a mesma lógica dos métodos
-  de Euler e Euler melhorado. Eles são tais que:
-</p>
-<ol>
-  <li>São de passos singulares.</li>
-  <li>
-    Não precisam de derivadas da função f, mas precisam determinar o valor
-    desta função várias vezes.
-  </li>
-  <li>
-    Após desenvolvermos a função f em série de Taylor, convenientemente,
-    encontramos a expressão do método baseado na série de Taylor.
-  </li>
-</ol>
-<p>
-  O método de Euler é um método de Runge-Kutta de ordem 1, pois ele é de passo
-  simples e não depende da derivada de f, f é a função dada que já é a própria
-  derivada da função incógnita. ME é uma MRK1.
-</p>
-<p>O método de Euler melhorada é um método de Runge-Kutta de ordem 2</p>
-<p>Outros métodos de Runge-Kutta:</p>
-<div style="text-align: center">
-  <img src="../../../assets/imgs/equacoes/Euler3.png" />
-</div>
-
-<h1>Simuladores</h1>
-<p>
-  Segue abaixo simulações utilizando os métodos de Euler, método de Euler Melhorado e o Método de Runge Kutta de quarta ordem.
-</p>
-<p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=3(x-4)<sup>2</sup>, com x<sub>0</sub>=-64. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
-<p>Em azul está a solução aproximada, em laranja está a solução analítica.</p>
-<!-- <div class="row">
-  <div class="col-sm-6 exemplos">
-    <button class="btn btn-primary" [ngClass]="{ 'active-button': selectedOption === 1 }" (click)="selecionarExemplo(1)"> Exemplo 1 </button>
-
+  <!--<h1>Método de Euler</h1>
+  <p>
+    O método de Euler foi desenvolvido para se encontrar o valor aproximado de
+    uma função usando as derivadas a partir de um valor inicial.
+  </p>
+  <p>
+    O método consiste em, uma vez que se sabe a taxa de crescimento de uma
+    função e um ponto de início, ir “caminhando” pela função utilizando um passo
+    fixo. Quanto menor o passo, mais preciso será a estimativa.
+  </p>
+  <p>
+    Por exemplo, dado a derivada de f(x) e os valores de x<sub>0</sub> e
+    f(x<sub>0</sub>), para estimar o valor de f(x) para um x qualquer.
+    Considerando d como |x - x<sub>0</sub>|, h =
+    <fracao [dividendo]="'d'" [divisor]="'n'"></fracao> em que n é o número de
+    passos que o método dará até chegar ao resultado. Quanto maior o número de
+    passos, mais preciso é a aproximação.
+  </p>
+  <p>Com isso:</p>
+  <div style="text-align: center">
+    <img src="../../../assets/imgs/equacoes/Euler1.png" />
   </div>
-  <div class="col-sm-6 exemplos">
-    <button class="btn btn-primary" [ngClass]="{ 'active-button': selectedOption === 2 }" (click)="selecionarExemplo(2)"> Exemplo 2 </button>
-  </div>
-</div> -->
-
-
-
-<ng-container *ngIf="!calculando">
-  <h2 style="text-align: center;">Método de Euler</h2>
-  <div class="grafico-container" *ngIf="!calculando1">
-    <app-grafico [x1]="x1" [y1]="y1" [x2]="xA" [y2]="yA" [canvasId]="'espaco1'"></app-grafico>
-  </div>
-  <div class="grafico-container" *ngIf="calculando1">
-    <app-grafico></app-grafico>
-  </div>
-  <div class="input-container">
-    <input type="range" id="rangeInput" [(ngModel)]="n1" min="3" max="100" (change)="recalcularEuler()"/>
-    <p>{{ n1 }}</p>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="../../../assets/videos/Euler.mp4"
+              type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
   </div>
 
-  <h2 style="text-align: center;">Método de Euler Melhorado</h2>
-  <div class="grafico-container" *ngIf="!calculando2">
-    <app-grafico [x1]="x2" [y1]="y2" [x2]="xA" [y2]="yA" [canvasId]="'espaco2'"></app-grafico>
+  <h1>Método de Euler Melhorado</h1>
+  <p>
+    O método de Euler Melhorado segue o mesmo princípio do anterior, mas em vez
+    de estimar o valor de uma função seguindo a derivada, ele parametriza a reta
+    que passa pela bissetriz do ângulo formado entre a reta tangente de x<sub>i</sub>
+    e x<sub>i+1</sub> e coloca seu valor em x<sub>i</sub>, agora,
+    f(x<sub>i+1</sub>) estará na reta da bissetriz, não mais na tangente.
+  </p>
+  <p>
+    Vamos considerar f(x<sub>i</sub>) como y<sub>i</sub> e g(x,y) a reta que
+    passa por (x,y). O M.E.M é dado por:
+  </p>
+  <div style="text-align: center">
+    <img src="../../../assets/imgs/equacoes/Euler2.png" />
   </div>
-  <div class="grafico-container" *ngIf="calculando2">
-    <app-grafico></app-grafico>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="../../../assets/videos/EulerMelhorado.mp4"
+              type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
   </div>
-  <div class="input-container">
-    <input type="range" id="rangeInput" [(ngModel)]="n2" min="3" max="20" (change)="calcularEulerMelhorado()"/>
-    <p>{{ n2 }}</p>
-  </div>
-
-  <h2 style="text-align: center;">Método de Runge-Kutta de 4° Ordem</h2>
-  <div class="grafico-container" *ngIf="!calculando3">
-    <app-grafico [x1]="x3" [y1]="y3" [x2]="xA" [y2]="yA" [canvasId]="'espaco3'"></app-grafico>
-  </div>
-  <div class="grafico-container" *ngIf="calculando3">
-    <app-grafico></app-grafico>
-  </div>
-  <div class="input-container">
-    <input type="range" id="rangeInput" [(ngModel)]="n3" min="3" max="20" (change)="calcularRungeKutta()"/>
-    <p>{{ n3 }}</p>
-  </div>
-
-  <h2>Teste você mesmo</h2>
-  <p>Abaixo você pode testar a sua própria EDO. Insira o valor da derivada conhecida, e os valores iniciais para X e Y.</p>
-  <ul>
-    <li style="color: blue;">
-      Método de Euler
+  <h1>Métodos de Runge-Kutta</h1>
+  <p>
+    Os métodos de Runge Kutta são métodos que seguem a mesma lógica dos métodos
+    de Euler e Euler melhorado. Eles são tais que:
+  </p>
+  <ol>
+    <li>São de passos singulares.</li>
+    <li>
+      Não precisam de derivadas da função f, mas precisam determinar o valor
+      desta função várias vezes.
     </li>
-    <li style="color: orange;">
-      Método de Euler Melhorado
+    <li>
+      Após desenvolvermos a função f em série de Taylor, convenientemente,
+      encontramos a expressão do método baseado na série de Taylor.
     </li>
-    <li style="color: darkgreen;">
-      Método de Runge-Kutta de 4° Ordem
-    </li>
-  </ul>
-  <form (submit)="salvar()">
-    <div class="form-group">
+  </ol>
+  <p>
+    O método de Euler é um método de Runge-Kutta de ordem 1, pois ele é de passo
+    simples e não depende da derivada de f, f é a função dada que já é a própria
+    derivada da função incógnita. ME é uma MRK1.
+  </p>
+  <p>O método de Euler melhorada é um método de Runge-Kutta de ordem 2</p>
+  <p>Outros métodos de Runge-Kutta:</p>
+  <div style="text-align: center">
+    <img src="../../../assets/imgs/equacoes/Euler3.png" />
+  </div>-->
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/Runge_pages-to-jpg-0001.jpg">
+  </div>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="../../../assets/videos/Euler.mp4"
+              type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/Runge_pages-to-jpg-0002.jpg">
+  </div>
+  <div class="video-container">
+    <video width="640" height="360" controls>
+      <source src="../../../assets/videos/EulerMelhorado.mp4"
+              type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/Runge_pages-to-jpg-0003.jpg">
+  </div>
+  <div style="text-align: center;">
+    <img class="pagina" src="../../../assets/imgs/paginas/Runge_pages-to-jpg-0004.jpg">
+  </div>
+
+  <h1>Simuladores</h1>
+  <p>
+    Segue abaixo simulações utilizando os métodos de Euler, método de Euler Melhorado e o Método de Runge Kutta de quarta ordem.
+  </p>
+  <p>Os simuladores abaixo estão estipulando uma solução aproximada do problema de valor inicial: f'(x)=3(x-4)<sup>2</sup>, com x<sub>0</sub>=-64. O gráfico está sendo mostrado dentro do intervalo [0,8] e logo abaixo você pode definir o número de sub-intervalos que o método irá utilizar na sua aproximação, ou seja, quanto maior o número, menor é o passo, e mais precisa será a aproximação.</p>
+  <p>Em azul está a solução aproximada, em laranja está a solução analítica.</p>
+  <!-- <div class="row">
+    <div class="col-sm-6 exemplos">
+      <button class="btn btn-primary" [ngClass]="{ 'active-button': selectedOption === 1 }" (click)="selecionarExemplo(1)"> Exemplo 1 </button>
+
+    </div>
+    <div class="col-sm-6 exemplos">
+      <button class="btn btn-primary" [ngClass]="{ 'active-button': selectedOption === 2 }" (click)="selecionarExemplo(2)"> Exemplo 2 </button>
+    </div>
+  </div> -->
+
+
+
+  <ng-container *ngIf="!calculando">
+    <h2 style="text-align: center;">Método de Euler</h2>
+    <div class="grafico-container" *ngIf="!calculando1">
+      <app-grafico [x1]="x1" [y1]="y1" [x2]="xA" [y2]="yA" [canvasId]="'espaco1'"></app-grafico>
+    </div>
+    <div class="grafico-container" *ngIf="calculando1">
+      <app-grafico></app-grafico>
+    </div>
+    <div class="input-container">
+      <input type="range" id="rangeInput" [(ngModel)]="n1" min="3" max="100" (change)="recalcularEuler()" />
+      <p>{{ n1 }}</p>
+    </div>
+
+    <h2 style="text-align: center;">Método de Euler Melhorado</h2>
+    <div class="grafico-container" *ngIf="!calculando2">
+      <app-grafico [x1]="x2" [y1]="y2" [x2]="xA" [y2]="yA" [canvasId]="'espaco2'"></app-grafico>
+    </div>
+    <div class="grafico-container" *ngIf="calculando2">
+      <app-grafico></app-grafico>
+    </div>
+    <div class="input-container">
+      <input type="range" id="rangeInput" [(ngModel)]="n2" min="3" max="20" (change)="calcularEulerMelhorado()" />
+      <p>{{ n2 }}</p>
+    </div>
+
+    <h2 style="text-align: center;">Método de Runge-Kutta de 4° Ordem</h2>
+    <div class="grafico-container" *ngIf="!calculando3">
+      <app-grafico [x1]="x3" [y1]="y3" [x2]="xA" [y2]="yA" [canvasId]="'espaco3'"></app-grafico>
+    </div>
+    <div class="grafico-container" *ngIf="calculando3">
+      <app-grafico></app-grafico>
+    </div>
+    <div class="input-container">
+      <input type="range" id="rangeInput" [(ngModel)]="n3" min="3" max="20" (change)="calcularRungeKutta()" />
+      <p>{{ n3 }}</p>
+    </div>
+
+    <h2>Teste você mesmo</h2>
+    <p>Abaixo você pode testar a sua própria EDO. Insira o valor da derivada conhecida, e os valores iniciais para X e Y.</p>
+    <ul>
+      <li style="color: blue;">
+        Método de Euler
+      </li>
+      <li style="color: orange;">
+        Método de Euler Melhorado
+      </li>
+      <li style="color: darkgreen;">
+        Método de Runge-Kutta de 4° Ordem
+      </li>
+    </ul>
+    <form (submit)="salvar()">
+      <div class="form-group">
         <label for="functionInput">F'(x)=</label>
         <input type="text" [(ngModel)]="funcaoUsuario" name="functionInput" required [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="x0">x<sub>0</sub>=</label>
         <input class="input-ponto" type="number" [(ngModel)]="x0s" required [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="y0">y<sub>0</sub>=</label>
         <input class="input-ponto" type="number" [(ngModel)]="y0s" required [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="numeroPassos">Número de passos</label>
         <input class="input-ponto" type="number" id="numeroPassos" [(ngModel)]="nS" [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="tamanhoPasso">Tamanho do passo</label>
         <input class="input-ponto" type="number" id="tamanhoPasso" [(ngModel)]="hS" [ngModelOptions]="{standalone: true}">
+      </div>
+      <button class="btn btn-primary" type="submit">Salvar/Resetar</button>
+    </form>
+
+    <div class="grafico-container" *ngIf="!calculandoS">
+      <app-grafico [x1]="x1s" [y1]="y1s" [x2]="x2s" [y2]="y2s" [x3]="x3s" [y3]="y3s" [canvasId]="'espaco4'"></app-grafico>
     </div>
-    <button class="btn btn-primary" type="submit">Salvar/Resetar</button>
-</form>
+    <div class="grafico-container" *ngIf="calculandoS">
+      <app-grafico></app-grafico>
+    </div>
 
-  <div class="grafico-container" *ngIf="!calculandoS">
-    <app-grafico [x1]="x1s" [y1]="y1s" [x2]="x2s" [y2]="y2s" [x3]="x3s" [y3]="y3s" [canvasId]="'espaco4'"></app-grafico>
-  </div>
-  <div class="grafico-container" *ngIf="calculandoS">
-    <app-grafico></app-grafico>
-  </div>
-
-</ng-container>
+  </ng-container>
 </div>
