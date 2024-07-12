@@ -20,6 +20,13 @@
   display: block;
 }
 
+footer{
+    text-align:center;
+    font-size: small;
+    color: lightgray;
+    padding: 20px;
+}
+
 @media (min-width: 768px) {
   // Styles for desktops
   .only-mobile {
