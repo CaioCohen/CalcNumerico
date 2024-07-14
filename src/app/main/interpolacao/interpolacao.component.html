@@ -48,9 +48,11 @@
         <option value="2">Newton</option>
     </select> -->
     <button class="btn btn-primary" style="margin: 10px;" (click)="plotar()">Plotar Gráfico</button>
-    <span>para x = </span><input class="input-ponto" type="number" [(ngModel)]="valorDesejado"> f(x)= 
-    <span>{{interpolateLagrange(pontos,valorDesejado).toFixed(2)}}</span>
-    <p>Polinômio resultante: f(x) = {{polinomioInterpolado}}</p>
+    <p>Polinômio resultante de Newton: f(x) = {{polinomioInterpoladoNewton}}</p>
+    <p>Polinômio resultante de Lagrange: f(x) = {{polinomioInterpoladoLagrange}}</p>
+    <p>Lembrando que os dois polinômios são iguais, apenas a forma de escrevê-los (resultante de cada método) é diferente.</p>
+    <span>para x = </span><input class="input-ponto" type="number" [(ngModel)]="valorDesejado" (change)="onValorDesejadoChange()" (keyup)="onValorDesejadoChange()"> f(x)= 
+    <span>{{resultadoDesejado.toFixed(2)}}</span>
     
     <div class="row" *ngIf="calculado">
         <div class="col-md-10" style="min-height: 400px;">

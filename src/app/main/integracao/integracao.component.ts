@@ -68,7 +68,7 @@ export class IntegracaoComponent implements OnInit {
     this.resultado = 0;
     let h = (this.b - this.a) / this.numeroPassos;
     switch (+this.integralEscolhida) {
-      case (0):
+      case (0): //dos trapezios
         for (let i = 0; i <= this.numeroPassos; i++) {
           this.x1.push(this.a + (i * h))
           this.y1.push(this.funcao(this.x1[i]));
@@ -83,9 +83,10 @@ export class IntegracaoComponent implements OnInit {
           this.resultado += (y0 + y1) * h / 2;
         }
         break;
-      case (1):
+      case (1)://de Simpson
         if (this.numeroPassos % 2 !== 0) {
-          throw new Error("O número de passos precisa ser par para a regra do 1/3 de simpson");
+          alert("O número de passos precisa ser par para a regra do 1/3 de simpson");
+          return;
         }
 
         this.resultado = this.funcao(this.a) + this.funcao(this.b);

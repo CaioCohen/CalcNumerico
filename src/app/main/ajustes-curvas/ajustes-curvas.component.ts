@@ -9,6 +9,8 @@ export class AjustesCurvasComponent implements OnInit {
   a1: number = 0;
   a2: number = 0;
   grau: number = 1;
+  polinomioResultante: string = "";
+  resultadoDesejado: number = 0;
   // pontos: number[][] = [[2013, 3569], [2014, 4437], [2015, 3830], [2016, 4055], [2017, 3773], [2018, 3721], [2019, 4355], [2020, 3368], [2021, 3380], [2022, 3480], [2023, 3861]];
 
   pontos: number[][] = [
@@ -53,6 +55,11 @@ export class AjustesCurvasComponent implements OnInit {
       this.listaY.push(this.leastSquares(this.pontos, this.grau, this.listaX[i]))
     }
     this.recarregarGrafico();
+    this.resultadoDesejado = this.leastSquares(this.pontos, this.grau, this.valorDesejado);
+  }
+
+  onChangeValorDesejado() {
+    this.resultadoDesejado = this.leastSquares(this.pontos, this.grau, this.valorDesejado);
   }
 
   recarregarGrafico() {
@@ -93,6 +100,17 @@ export class AjustesCurvasComponent implements OnInit {
 
     // Solve for the coefficients
     const coefficients = this.solveLinearSystem(XTX, XTY);
+
+    // Build the polynomial string
+    let polynomial = '';
+    for (let i = 0; i <= degree; i++) {
+      if (i > 0 && coefficients[i] >= 0) {
+        polynomial += ' + ';
+      }
+      polynomial += `${coefficients[i].toFixed(4)}*x^${i}`;
+    }
+
+    this.polinomioResultante = polynomial;
 
     // Evaluate the polynomial at x
     let result = 0;

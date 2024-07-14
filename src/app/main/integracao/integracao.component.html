@@ -54,11 +54,14 @@
     <button class="btn btn-primary" type="submit">Salvar/Resetar</button>
   </form>
   <br />
-  <div class="grafico-container" *ngIf="!calculando">
-    <p>Resultado: {{resultado.toFixed(2)}}</p>
-    <app-grafico [x1]="x1" [y1]="y1" [x2]="x2" [y2]="y2" [canvasId]="'espaco1'"></app-grafico>
-  </div>
-  <div class="grafico-container" *ngIf="calculando">
-    <app-grafico></app-grafico>
+  <div style="min-height: 400px;">
+    <div class="grafico-container" *ngIf="!calculando">
+      <p>Resultado: {{resultado.toFixed(2)}}</p>
+      <app-grafico [x1]="x1" [y1]="y1" [x2]="x2" [y2]="y2" [canvasId]="'espaco1'"></app-grafico>
+    </div>
+    <div class="grafico-container" *ngIf="calculando">
+      <app-grafico></app-grafico>
+    </div>
+
   </div>
 </div>

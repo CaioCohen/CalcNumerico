@@ -12,7 +12,9 @@ export class InterpolacaoComponent implements OnInit {
   a2: number = 0;
   formaInterpolacao: number = 2;
   valorDesejado:number = 0;
-  polinomioInterpolado: string = "";
+  polinomioInterpoladoNewton: string = "";
+  polinomioInterpoladoLagrange: string = "";
+  resultadoDesejado: number = 0;
 
   pontos: number[][] = [
     [1, 2],
@@ -49,27 +51,42 @@ export class InterpolacaoComponent implements OnInit {
     this.listaY = [];
     let h = (this.fim - this.inicio) / 1000;
     for (let i = 0; i <= 1000; i++) {
+      this.interpolateLagrange(this.pontos, this.listaX[i]);
       this.listaX.push(this.inicio + i * h);
-
-      this.listaY.push(this.formaInterpolacao == 1 ? this.interpolateLagrange(this.pontos, this.listaX[i]) : this.interpolateNewton(this.pontos, this.listaX[i]))
+      this.listaY.push(this.interpolateNewton(this.pontos, this.listaX[i]));
     }
     this.recarregarGrafico();
+    this.resultadoDesejado = this.interpolateNewton(this.pontos, this.valorDesejado)
+  }
+
+  onValorDesejadoChange() {
+    this.resultadoDesejado = this.interpolateNewton(this.pontos, this.valorDesejado)
   }
 
   interpolateLagrange(points: number[][], x: number): number {
     const n = points.length;
     let result = 0;
+    let polynomial = '';
 
     for (let i = 0; i < n; i++) {
       let term = points[i][1];
+      let termStr = points[i][1].toString();
+
       for (let j = 0; j < n; j++) {
         if (j !== i) {
           term *= (x - points[j][0]) / (points[i][0] - points[j][0]);
+          termStr += ` * (x - ${points[j][0]}) / (${points[i][0]} - ${points[j][0]})`;
         }
       }
       result += term;
+
+      if (i > 0) {
+        polynomial += ' + ';
+      }
+      polynomial += `(${termStr})`;
     }
 
+    this.polinomioInterpoladoLagrange = polynomial;
     return result;
   }
 
@@ -87,7 +104,7 @@ export class InterpolacaoComponent implements OnInit {
       let termStr = this.formatTerm(dividedDifferences[0][i], points, i);
       polynomial += ` ${termStr}`;
     }
-    this.polinomioInterpolado = polynomial
+    this.polinomioInterpoladoNewton = polynomial
     return result;
   }
 
@@ -113,7 +130,7 @@ export class InterpolacaoComponent implements OnInit {
     if (coefficient >= 0) {
         term += '+';
     }
-    term += `${coefficient}`;
+    term += `${coefficient.toFixed(4)}`;
     
     for (let i = 0; i < index; i++) {
         term += `(x - ${points[i][0]})`;
