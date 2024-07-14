@@ -300,7 +300,10 @@
     </div>
 
     <div class="col-md-2" style="height: 400px;overflow-y: auto;">
-      <p *ngFor="let item of listaPassos">{{item}}</p>
+      <ng-container *ngFor="let item of listaPassos; let i = index">
+        <p>Iteração: {{i + 1}}</p>
+        <p [innerHTML]="item"></p>
+      </ng-container>
     </div>
   </div>
 

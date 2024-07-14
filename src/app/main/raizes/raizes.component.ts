@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as math from 'mathjs';
 import { evaluate, parse, compile } from 'mathjs';
 
 @Component({
@@ -20,12 +21,14 @@ export class RaizesComponent implements OnInit {
   contadorSecante = 0;
   a1Usuario: number = 0;
   a2Usuario: number = 0;
-  b1Usuario: number = 0;
+  b1Usuario: number = 4;
   b2Usuario: number = 0;
   funcaoUsuario: string = 'x^3-30';
   result: number | null = null;
   expr: any;
   listaPassos: string[] = [];
+
+  iteração: number = 0;
 
   constructor() { }
 
@@ -85,7 +88,7 @@ export class RaizesComponent implements OnInit {
     } else {
       this.ponto2 = [(this.ponto1[0] + this.ponto2[0]) / 2, medio];
     }
-    this.listaPassos.push(`Ponto 1:(${this.ponto1[0].toFixed(2)},${this.ponto1[1].toFixed(2)}). Ponto 2: (${this.ponto2[0].toFixed(2)},${this.ponto2[1].toFixed(2)})` )
+    this.listaPassos.push(`(x<sub>1</sub>,f(x<sub>1</sub>)):(${this.ponto1[0].toFixed(4)},${this.ponto1[1].toFixed(4)}). (x<sub>2</sub>,f(x<sub>2</sub>)): (${this.ponto2[0].toFixed(4)},${this.ponto2[1].toFixed(4)})` )
     this.recarregarGrafico();
   }
 
@@ -102,7 +105,7 @@ export class RaizesComponent implements OnInit {
     } else {
       this.ponto2 = [x0, this.funcao(x0)];
     }
-    this.listaPassos.push(`Ponto 1:(${this.ponto1[0].toFixed(2)},${this.ponto1[1].toFixed(2)}). Ponto 2: (${this.ponto2[0].toFixed(2)},${this.ponto2[1].toFixed(2)})` )
+    this.listaPassos.push(`(x<sub>1</sub>,f(x<sub>1</sub>)):(${this.ponto1[0].toFixed(4)},${this.ponto1[1].toFixed(4)}). (x<sub>2</sub>,f(x<sub>2</sub>)):: (${this.ponto2[0].toFixed(4)},${this.ponto2[1].toFixed(4)})` )
     this.plotarRetaFalsaPosicao();
     this.recarregarGrafico();
 
@@ -110,11 +113,15 @@ export class RaizesComponent implements OnInit {
 
   metodoNewthon() {
     let xn = this.ponto1[0];
+    if (this.derivada(this.expr, xn) < 0.0001) {
+      alert("Derivada muito próxima de zero.")
+      return;
+    }
 
     xn = xn - (this.funcao(xn) / this.derivada(this.expr, xn));
 
     this.ponto1 = [xn, this.funcao(xn)];
-    this.listaPassos.push(`Ponto 1:(${this.ponto1[0].toFixed(2)},${this.ponto1[1].toFixed(2)}).` )
+    this.listaPassos.push(`(x,f(x)):(${this.ponto1[0].toFixed(4)},${this.ponto1[1].toFixed(4)}).` )
     this.recarregarGrafico();
 
   }
@@ -122,15 +129,21 @@ export class RaizesComponent implements OnInit {
   metodoSecante() {
 
     let x0 = ((this.ponto1[0] * this.ponto2[1]) - (this.ponto2[0] * this.ponto1[1])) / (this.ponto2[1] - this.ponto1[1])
+    if (Number.isNaN(x0)) {
+      this.listaPassos.push(`(x<sub>1</sub>,f(x<sub>1</sub>)):(${this.ponto1[0].toFixed(4)},${this.ponto1[1].toFixed(4)}). (x<sub>2</sub>,f(x<sub>2</sub>)): (${this.ponto2[0].toFixed(4)},${this.ponto2[1].toFixed(4)})`)
+      return;
+    }
     if (this.contadorSecante % 2 == 0) {
       this.ponto1 = [x0, this.funcao(x0)]
     } else {
       this.ponto2 = [x0, this.funcao(x0)]
     }
     this.contadorSecante++;
-    this.listaPassos.push(`Ponto 1:(${this.ponto1[0].toFixed(2)},${this.ponto1[1].toFixed(2)}). Ponto 2: (${this.ponto2[0].toFixed(2)},${this.ponto2[1].toFixed(2)})` )
-    this.plotarRetaSecante();
-    this.recarregarGrafico();
+    this.listaPassos.push(`(x<sub>1</sub>,f(x<sub>1</sub>)):(${this.ponto1[0].toFixed(4)},${this.ponto1[1].toFixed(4)}). (x<sub>2</sub>,f(x<sub>2</sub>)): (${this.ponto2[0].toFixed(4)},${this.ponto2[1].toFixed(4)})`)
+    if (math.abs( this.ponto1[0] - this.ponto2[0]) > 0.0001) {
+      this.plotarRetaSecante();
+      this.recarregarGrafico();
+    }
 
   }
 
@@ -160,6 +173,7 @@ export class RaizesComponent implements OnInit {
   }
 
   proximoPasso() {
+    this.iteração += 1;
     switch (this.simuladorEscolhido) {
       case (1):
         this.metodoBissecao();
@@ -198,10 +212,11 @@ export class RaizesComponent implements OnInit {
       this.ponto2 = [this.b1Usuario, this.funcao(this.b1Usuario)];
       this.recuperarCoordenadas();
       this.simuladorEscolhido = 0;
+      this.iteração = 0;
 
     } catch (error) {
       console.error('Error parsing expression:', error);
-      alert('Invalid mathematical expression');
+      alert('Expressão matemática inválida');
     }
   }
 
