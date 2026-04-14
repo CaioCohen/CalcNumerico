@@ -53,8 +53,8 @@ export class ValorInicialComponent implements OnInit {
     this.salvar();
   }
 
-  funcao(x: number) {
-    return this.expr.evaluate({ x: x })
+  funcao(x: number, y: number) {
+    return this.expr.evaluate({ x: x, y: y })
   }
 
   funcaoFixa(x: number) {
@@ -175,7 +175,7 @@ export class ValorInicialComponent implements OnInit {
     this.y1s = [+this.y0s]
     for (let i = 1; i <= this.nS; i++) {
       this.x1s.push(+(this.x1s[0] + i * h).toFixed(2));
-      this.y1s.push(+(this.y1s[i - 1] + h * this.funcao(this.x1s[i - 1])).toFixed(2))
+      this.y1s.push(+(this.y1s[i - 1] + h * this.funcao(this.x1s[i - 1], this.y1s[i - 1])).toFixed(2))
     }
 
     //EULER MELHORADO
@@ -183,10 +183,8 @@ export class ValorInicialComponent implements OnInit {
     this.y2s = [+this.y0s]
     for (let i = 1; i <= this.nS; i++) {
       this.x2s.push(+(this.x2s[0] + i * h).toFixed(2));
-      let k1 = 0;
-      let k2 = 0;
-      k1 = h * this.funcao(this.x2s[i - 1]);
-      k2 = h * this.funcao(this.x2s[i]);
+      let k1 = h * this.funcao(this.x2s[i - 1], this.y2s[i - 1]);
+      let k2 = h * this.funcao(this.x2s[i], this.y2s[i - 1] + k1);
       this.y2s.push(+(this.y2s[i - 1] + ((k1 + k2) / 2)).toFixed(2))
     }
 
@@ -195,14 +193,10 @@ export class ValorInicialComponent implements OnInit {
     this.y3s = [+this.y0s]
     for (let i = 1; i <= this.nS; i++) {
       this.x3s.push(+(this.x3s[0] + i * h).toFixed(2));
-      let k1 = 0;
-      let k2 = 0;
-      let k3 = 0;
-      let k4 = 0;
-      k1 = h * this.funcao(this.x3s[i - 1])
-      k2 = h * this.funcao(this.x3s[i - 1] + (h / 2))
-      k3 = h * this.funcao(this.x3s[i - 1] + (h / 2))
-      k4 = h * this.funcao(this.x3s[i])
+      let k1 = h * this.funcao(this.x3s[i - 1], this.y3s[i - 1]);
+      let k2 = h * this.funcao(this.x3s[i - 1] + (h / 2), this.y3s[i - 1] + (k1 / 2));
+      let k3 = h * this.funcao(this.x3s[i - 1] + (h / 2), this.y3s[i - 1] + (k2 / 2));
+      let k4 = h * this.funcao(this.x3s[i], this.y3s[i - 1] + k3);
       this.y3s.push(+(this.y3s[i - 1] + (k1 + 2 * k2 + 2 * k3 + k4) / 6).toFixed(2))
     }
 
